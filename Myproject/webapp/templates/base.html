@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<!--    <link rel="stylesheet" href="{{ STATIC_URL }}css/base.css" type="text/css" /> -->
+<!--        div#container{width: 1590px;clear: both;background-color: aqua} -->
+<!--        div#menu{height: 600px;width: 200px;float: left;background-color: tan} -->
+<!--        div#content{height: 600px;width: 1590px;background-color: #EFEFEF} -->
+<!--        div#footer{width: 1590px;clear:both;text-align: center;background-color: darkmagenta} -->
+    <style type="text/css">
+        div#container{width: 1350px;}
+        div#header{height:70px; float: inherit;background-color: #417690; width: 117%}
+        div#content{background-color: #EFEFEF;width: 100%}
+        div#footer{clear:both;text-align: center;background-color: darkmagenta; width: 100%}
+        body,div,h1,h2,h3,h4,h5,h6,ul,li,ol,p { font-family: 微软雅黑; font-style: normal}
+        ul,li {list-style-type: none;margin: 0;padding: 20px; height:20px; width: 250px; padding-top:6px; text-align: center; font-size: medium; display: inline}
+    </style>
+    <title>管理系统</title>
+    <link rel="icon" href="{{ STATIC_URL }}images/favicon.ico" type="image/x-icon">
+</head>
+<body>
+<div id="container">
+    <div id="header">
+        <p style="font-size: x-large; color: #f5dd5d; padding-left: 20px; padding-top: 1px; display: inline-block"><a href="http://127.0.0.1:8000/index/" style="text-decoration: none; color: #f5dd5d">管理系统</a></p>
+        <ul style="display: inline-block">
+            <li><a href="http://127.0.0.1:8000/index/manage/" style="text-decoration: none; color: #f5dd5d">服务器管理</a></li>
+            <li><a href="http://127.0.0.1:8000/index/wifimanage/" style="text-decoration: none; color: #f5dd5d">Wifi管理</a></li>
+        </ul>
+        <a href="http://127.0.0.1:8000/logout/" style="text-decoration: none; float: right; padding-right: 30px; padding-top: 30px; color: white" >退出</a>
+        <a href="http://127.0.0.1:8000/index/changepassword/" style="text-decoration: none; float: right; padding-right: 30px; padding-top: 30px; color: white" >修改密码</a>
+    </div>
+</div>
+
+<div id="content">
+    {% block table %}
+    
+    {% endblock %}
+</div>
+
+<div id="footer"></div>
+</body>
+</html>

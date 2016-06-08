@@ -1,0 +1,6 @@
+*.pyc
+.idea/
+Myproject/webapp/migrations/*
+Myproject/webapp/uploadfile/*
+Myproject/*.pyc
+Myproject/webapp/*pyc

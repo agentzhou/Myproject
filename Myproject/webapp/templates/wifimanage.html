@@ -1,0 +1,19 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+{% extends "base.html" %}
+{% block table %}
+    <div>
+    <form enctype="multipart/form-data" method="POST" action="" accept-charset="utf-8" style="margin-left: 40%">
+        {% csrf_token %}
+        <p>{{ uff.as_ul }}
+        <br>
+        <br>
+    <input type="submit" value="开始上传" style="margin-left: 80px"/></p>
+    </form>
+    </div>
+    <p style="font-size: x-large; padding-left: 150px; padding-top: 1px; display: inline-block"><a href="http://127.0.0.1:8000/index/wifimanage/line/" style="text-decoration: none">Line</a></p>
+    <p style="font-size: x-large; padding-left: 150px; padding-top: 1px; display: inline-block"><a href="http://127.0.0.1:8000/index/wifimanage/mobile_pc/" style="text-decoration: none">Mobile-PC</a></p>
+    <p style="font-size: x-large; padding-left: 150px; padding-top: 1px; display: inline-block"><a href="http://127.0.0.1:8000/index/wifimanage/mobile_test/" style="text-decoration: none">Mobile-Test</a></p>
+    <p style="font-size: x-large; padding-left: 150px; padding-top: 1px; display: inline-block"><a href="http://127.0.0.1:8000/index/wifimanage/private/" style="text-decoration: none">Private</a></p>
+    <p style="font-size: x-large; padding-left: 150px; padding-top: 1px; display: inline-block"><a href="http://127.0.0.1:8000/index/wifimanage/private_test/" style="text-decoration: none">Pravite-Test</a></p>
+{% endblock %}

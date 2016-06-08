@@ -1,0 +1,6 @@
+div#container{width: 1590px;clear: both;background-color: aqua}
+div#header{}
+div#menu{height: 600px;width: 200px;float: left;background-color: tan}
+div#content{height: 600px;width: 1590px;background-color: palevioletred}
+div#footer{width: 1590px;clear:both;text-align: center;background-color: darkmagenta}
+h1,p {font-size: 14px;font-family: 微软雅黑}

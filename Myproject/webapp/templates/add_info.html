@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block table %}
+<style type="text/css" xmlns="http://www.w3.org/1999/html">
+    td {text-align: center}
+</style>
+<form action="" method = "post" enctype="multipart/form-data" style="text-align: center">
+    {% csrf_token %}
+    {{ mrf }}
+    <input id="01" type="submit" value = "ok" style="margin-top: 20px" />
+</form>
+{% endblock %}
