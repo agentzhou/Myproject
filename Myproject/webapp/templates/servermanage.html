@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% block table %}
+<form method="post" class="form-inline" role="form" style="margin-left: 40%; padding-bottom: 1%; ">
+    {% csrf_token %}
+<!--    <div class="form-group">
+        <label class="sr-only" for="sn">SN序列号</label>
+        <input type="text" class="form-control" id="sn" name="sn" placeholder="SN序列号">
+    </div>
+    <div class="form-group">
+        <label class="sr-only" for="wanip">外网ip</label>
+        <input type="text" class="form-control" id="wanip" name="wanip" placeholder="外网ip">
+    </div>
+    <div class="form-group">
+        <label class="sr-only" for="lanip">内网ip</label>
+        <input type="text" class="form-control" id="lanip" name="lanip" placeholder="内网ip">
+    </div>-->
+    <div class="form-group" style="margin-right: 1px">
+        <label class="sr-only" for="used">应用类型</label>
+        <input type="text" class="form-control" id="used" name="used" placeholder="应用类型(ddz)" style="width: 130px; height: 34px">
+    </div>
+    <div class="form-group">
+        <label for="platform"></label>
+        <select class="form-control" id="platform" name="platform" style="width: 130px; height: 34px">
+            <option style="text-align: center" selected="selected" value="蛙蛙@酷蛙@多酷@全民">--请选择--</option>
+            <option style="text-align: center" value="蛙蛙">蛙蛙</option>
+            <option style="text-align: center" value="酷蛙">酷蛙</option>
+            <option style="text-align: center" value="多酷">多酷</option>
+            <option style="text-align: center" value="全民">全民</option>
+        </select>
+    </div>
+    <button name="FormA" type="submit" class="btn btn-success active"><span class="glyphicon glyphicon-ok"></span>  提交</button>
+</form>
+<form method="post" class="form-inline" role="form" style="margin-left: 32%; padding-bottom: 1% ">
+    {% csrf_token %}
+    <div class="form-group">
+        <label class="sr-only" for="sn">SN序列号</label>
+        <input type="text" class="form-control" id="sn" name="sn" placeholder="SN序列号" style="width: 130px; height: 34px">
+    </div>
+    <div class="form-group">
+        <label class="sr-only" for="wanip">外网ip</label>
+        <input type="text" class="form-control" id="wanip" name="wanip" placeholder="外网ip" style="width: 130px; height: 34px">
+    </div>
+    <div class="form-group">
+        <label class="sr-only" for="lanip">内网ip</label>
+        <input type="text" class="form-control" id="lanip" name="lanip" placeholder="内网ip" style="width: 130px; height: 34px">
+    </div>
+<!--    <div class="form-group">
+        <label class="sr-only" for="used">应用类型</label>
+        <input type="text" class="form-control" id="used" name="used" placeholder="应用类型(ddz)">
+    </div>
+    <div class="form-group">
+        <label for="platform"></label>
+        <select class="form-control" id="platform" name="platform">
+            <option style="text-align: center" selected="selected" value="蛙蛙@酷蛙@多酷@全民">--请选择--</option>
+            <option style="text-align: center" value="蛙蛙">蛙蛙</option>
+            <option style="text-align: center" value="酷蛙">酷蛙</option>
+            <option style="text-align: center" value="多酷">多酷</option>
+            <option style="text-align: center" value="全民">全民</option>
+        </select>
+    </div>-->
+    <button name="FormB" type="submit" class="btn btn-success active"><span class="glyphicon glyphicon-ok"></span>  提交</button>
+    {% if result_default_count %}
+        <p style="margin-left: 20%; padding-top: 20px"><strong class="text-danger">当前查询结果: {{ result_default_count }} 台</strong></p>
+    {% else %}
+        <p style="margin-left: 20%; padding-top: 20px"><strong class="text-danger">当前查询结果: {{ result_servinfo_count }} 台</strong></p>
+    {% endif %}
+</form>
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+         <tr>
+            <th>SN号</th>
+            <th>外网IP</th>
+            <th>内网IP</th>
+            <th>平台</th>
+            <th>品牌</th>
+            <th>机架位</th>
+            <th>用途</th>
+            <th>双电源</th>
+            <th>状态</th>
+         </tr>
+        </thead>
+        <tbody>
+        {% if result_default %}
+        {% for i in result_default %}
+         <tr>
+            <td> <a href="http://127.0.0.1:8000/index/servermanage/{{ i.sn }}">{{ i.sn }}</a></td>
+            <td>{{ i.wanip }}</td>
+            <td>{{ i.lanip }}</td>
+            <td>{{ i.platform }}</td>
+            <td>{{ i.brand }}</td>
+            <td>{{ i.position }}</td>
+            <td>{{ i.used }}</td>
+            <td>{{ i.power }}</td>
+            <td>{{ i.status }}</td>
+         </tr>
+        {% endfor %}
+        {% else %}
+        {% for i in result_servinfo %}
+         <tr>
+            <td> <a href="http://127.0.0.1:8000/index/servermanage/{{ i.sn }}">{{ i.sn }}</a></td>
+            <td>{{ i.wanip }}</td>
+            <td>{{ i.lanip }}</td>
+            <td>{{ i.platform }}</td>
+            <td>{{ i.brand }}</td>
+            <td>{{ i.position }}</td>
+            <td>{{ i.used }}</td>
+            <td>{{ i.power }}</td>
+            <td>{{ i.status }}</td>
+         </tr>
+        {% endfor %}
+        {% endif %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

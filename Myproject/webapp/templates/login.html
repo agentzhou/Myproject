@@ -3,15 +3,37 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>管理系统</title>
+    <title>运维业务管理系统</title>
+    <link rel="icon" href="/static/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/static/css/font.css" media="screen">
+    <script src="/static/js/jquery-3.0.0.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
 </head>
-
-<body style="font-family: Verdana">
-<h1 style="text-align: center">管理系统</h1>
-<form action="" method = "post" enctype="multipart/form-data" style="text-align: center">
+<body style="overflow-x:hidden">
+<form action="" method="post" class="form-horizontal" role="form" style="margin-left: 15%; margin-top: 10%">
     {% csrf_token %}
-    {{lg.as_p}}
-    <input type="submit" value = "ok" />
+    <h2 class="col-xs-offset-4" style="margin-bottom: 20px">欢迎登录</h2>
+    <div class="form-group">
+<!--        <label for="username" class="col-xs-4 control-label">用户名</label>-->
+        <label for="username" class="col-xs-4 control-label"><span class="glyphicon glyphicon-user"></span></label>
+        <div class="col-xs-2">
+            <input type="text" name="username" class="form-control">
+        </div>
+    </div>
+    <div class="form-group">
+<!--        <label for="password" class="col-xs-4 control-label">密码</label>-->
+        <label for="username" class="col-xs-4 control-label"><span class="glyphicon glyphicon-lock"></span></label>
+        <div class="col-xs-2">
+            <input type="password" name="password" class="form-control">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-offset-4 col-xs-2">
+            <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span>  登录</button>
+            <button type="reset" class="btn btn-info"><span class="glyphicon glyphicon-refresh"></span>  重置</button>
+        </div>
+    </div>
 </form>
 </body>
 </html>

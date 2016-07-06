@@ -1,19 +1,100 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
 {% extends "base.html" %}
 {% block table %}
-    <div>
-    <form enctype="multipart/form-data" method="POST" action="" accept-charset="utf-8" style="margin-left: 40%">
+    <script src="/static/js/bootstrap-filestyle.js"></script>
+    <form name="form1" method="POST" class="filestyle" role="form" enctype="application/x-www-form-urlencoded" style="margin: 0px auto; width: 500px; padding-top: 5px">
         {% csrf_token %}
-        <p>{{ uff.as_ul }}
-        <br>
-        <br>
-    <input type="submit" value="开始上传" style="margin-left: 80px"/></p>
+        <div class="row">
+            <div class="col-xs-5">
+                <div class="form-group">
+                    <label for="ssid"></label>
+                    <select class="form-control" id="ssid" name="ssid" onchange="document.form1.submit()">
+                        <option selected="selected">---选择SSID---</option>
+                        <option value="GR-Line">GR-Line</option>
+                        <option value="GR-MobilePC">GR-MobilePC</option>
+                        <option value="GR-MobileTest">GR-MobileTest</option>
+                        <option value="GR-Private">GR-Private</option>
+                        <option value="GR-PrivateTest">GR-PrivateTest</option>
+                    </select>
+                </div>
+            </div>
+<!--            <button type="submit" class="btn btn-primary active"><span class="glyphicon glyphicon-ok"></span>  OK</button>-->
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label for=""></label>
+                    <input type="file" class="filestyle" id="choosefile" name="choosefile">
+                </div>
+            </div>
+            <div class="col-xs-1">
+                <div class="form-group">
+                    <label for=""></label>
+                    <button type="submit" class="btn btn-primary active"><span class="glyphicon glyphicon-ok"></span>  导入</button>
+                </div>
+            </div>
+        </div>
     </form>
+    <script type="text/javascript">
+    $(":file").filestyle('buttonText', '选择文件');
+    </script>
+    <div class="container">
+    <table class="table table-hover">
+        <thead>
+         <tr>
+            <th>User Name</th>
+            <th>Passphrase</th>
+            <th>WLAN</th>
+            <th>Mac Address</th>
+            <th>Vlan ID</th>
+            <th>Expires</th>
+            <th>使用人</th>
+            <th>使用设备</th>
+            <th>部门</th>
+         </tr>
+        </thead>
+        <tbody>
+        {% if result_wifi_import %}
+        {% for i in result_wifi_import %}
+         <tr>
+            <td>{{ i.username }}</td>
+            <td>{{ i.passphrase }}</td>
+            <td>{{ i.wan }}</td>
+            <td>{{ i.macaddr }}</td>
+            <td>{{ i.vlan }}</td>
+            <td>{{ i.expires }}</td>
+            <td>{{ i.who }}</td>
+            <td>{{ i.device }}</td>
+            <td>{{ i.department }}</td>
+         </tr>
+        {% endfor %}
+        {% elif result_wifi_select %}
+        {% for i in result_wifi_select %}
+        <tr>
+            <td>{{ i.username }}</td>
+            <td>{{ i.passphrase }}</td>
+            <td>{{ i.wan }}</td>
+            <td>{{ i.macaddr }}</td>
+            <td>{{ i.vlan }}</td>
+            <td>{{ i.expires }}</td>
+            <td>{{ i.who }}</td>
+            <td>{{ i.device }}</td>
+            <td>{{ i.department }}</td>
+         </tr>
+        {% endfor %}
+        {% else %}
+        {% for i in result_wifi_default %}
+        <tr>
+            <td>{{ i.username }}</td>
+            <td>{{ i.passphrase }}</td>
+            <td>{{ i.wan }}</td>
+            <td>{{ i.macaddr }}</td>
+            <td>{{ i.vlan }}</td>
+            <td>{{ i.expires }}</td>
+            <td>{{ i.who }}</td>
+            <td>{{ i.device }}</td>
+            <td>{{ i.department }}</td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+        </tbody>
+    </table>
     </div>
-    <p style="font-size: x-large; padding-left: 150px; padding-top: 1px; display: inline-block"><a href="http://127.0.0.1:8000/index/wifimanage/line/" style="text-decoration: none">Line</a></p>
-    <p style="font-size: x-large; padding-left: 150px; padding-top: 1px; display: inline-block"><a href="http://127.0.0.1:8000/index/wifimanage/mobile_pc/" style="text-decoration: none">Mobile-PC</a></p>
-    <p style="font-size: x-large; padding-left: 150px; padding-top: 1px; display: inline-block"><a href="http://127.0.0.1:8000/index/wifimanage/mobile_test/" style="text-decoration: none">Mobile-Test</a></p>
-    <p style="font-size: x-large; padding-left: 150px; padding-top: 1px; display: inline-block"><a href="http://127.0.0.1:8000/index/wifimanage/private/" style="text-decoration: none">Private</a></p>
-    <p style="font-size: x-large; padding-left: 150px; padding-top: 1px; display: inline-block"><a href="http://127.0.0.1:8000/index/wifimanage/private_test/" style="text-decoration: none">Pravite-Test</a></p>
 {% endblock %}

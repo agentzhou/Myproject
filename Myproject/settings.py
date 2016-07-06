@@ -66,6 +66,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
 #                 'django.contrib.auth.views.login',
                 'django.contrib.messages.context_processors.messages',
+#                'Myproject.webapp.views.GetUserName',
             ],
         },
     },
@@ -130,4 +131,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'Myproject', 'webapp')
 
 LOGIN_URL = '/'
 
-SESSION_COOKIE_AGE = 360000
+#SESSION_COOKIE_AGE = 360000

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block table %}
+    <script src="/static/js/bootstrap-filestyle.js"></script>
+    <form action="/index/uploadfile/" method="POST" class="filestyle" role="form" enctype="multipart/form-data" style="margin: 0px auto; width: 500px; padding-top: 50px">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-xs-8">
+                <div class="form-group">
+                    <input type="file" class="filestyle" id="uploadfile" name="uploadfile">
+                </div>
+            </div>
+            <div class="col-xs-2">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary active"><span class="glyphicon glyphicon-ok"></span>  提交</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <script type="text/javascript">
+    $(":file").filestyle('buttonText', '选择文件');
+    </script>
+{% endblock %}

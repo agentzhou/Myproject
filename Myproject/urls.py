@@ -15,25 +15,20 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from Myproject.webapp.views import login, logout, index, error, \
-	manage, detail, add_info, changepassword, wifimanage, line, mobile_pc, mobile_test, private, private_test
+from Myproject.webapp.views import login, logout, index, error, servermanage, detail, add_info, changepassword, uploadfile, wifimanage
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', login),
-    url(r'^login/$', login,),
-    url(r'^index/$', index,),
+    url(r'^login/$', login),
+    url(r'^index/$', index),
     url(r'^logout/$', logout),
     url(r'^error/$', error),
-    url(r'^index/manage/$', manage),
-    url(r'^index/manage/(?P<sn>\w{6,10})/$', detail),
-    url(r'^index/manage/(?P<sn>\w{6,10})/add_info/$', add_info),
+    url(r'^index/servermanage/$', servermanage),
+    url(r'^index/servermanage/(?P<sn>\w{6,10})/$', detail),
+    url(r'^index/servermanage/(?P<sn>\w{6,10})/add_info/$', add_info),
     url(r'^index/changepassword/$', changepassword),
-	url(r'^index/wifimanage/$', wifimanage),
-    url(r'^index/wifimanage/line/$', line),
-    url(r'^index/wifimanage/mobile_pc/$', mobile_pc),
-	url(r'^index/wifimanage/mobile_test/$', mobile_test),
-	url(r'^index/wifimanage/private/$', private),
-	url(r'^index/wifimanage/private_test/$', private_test),
+    url(r'^index/uploadfile/$', uploadfile),
+    url(r'^index/wifimanage/$', wifimanage),
 ]

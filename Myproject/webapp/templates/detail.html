@@ -1,87 +1,57 @@
 {% extends "base.html" %}
 {% block table %}
 <style type="text/css">
+    th {text-align: center}
     td {text-align: center}
 </style>
-<form method = "post" enctype="application/x-www-form-urlencoded" style="text-align: center; margin: 10px" >
-    <table border="1" align="center" width="auto" cellpadding="5" cellspacing="0" frame="vside" >
-        <tr>
-            <th width="120px">SN号</th>
-            <th width="420px">CPU</th>
-            <th width="60px">内存</th>
-            <th width="200px">硬盘</th>
-        </tr>
-    </table>
-    <table border="1" align="center" width="auto" cellpadding="5" cellspacing="0" frame="vside" >
-        {% for i in result_servconf %}
-        <tr>
-            <td style="background-color: powderblue" width="120px" >{{ i.info_id }}</td>
-            <td style="background-color: powderblue" width="420px" >{{ i.cpu }}</td>
-            <td style="background-color: powderblue" width="60px">{{ i.mem }}</td>
-            <td style="background-color: powderblue" width="200px">{{ i.disk }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-<!--   <table style="margin-top: 40px" border="1" align="center" width="auto" cellpadding="5" cellspacing="0" frame="vside" > -->
-<!--        <tr> -->
-<!--            <th width="200px">外网IP</th> -->
-<!--            <th width="200px">外网IP_1</th> -->
-<!--            <th width="200px">外网IP_2</th> -->
-<!--            <th width="200px">外网IP_3</th> -->
-<!--        </tr> -->
-<!--    </table> -->
-<!--    <table border="1" align="center" width="auto" cellpadding="5" cellspacing="0" frame="vside" > -->
-<!--        {% for i in result_servconf %} -->
-<!--        <tr> -->
-<!--            <td style="background-color: powderblue" width="200px">{{ i.wip }}</td> -->
-<!--            <td style="background-color: powderblue" width="200px">{{ i.wip_1 }}</td> -->
-<!--            <td style="background-color: powderblue" width="200px">{{ i.wip_2 }}</td> -->
-<!--            <td style="background-color: powderblue" width="200px">{{ i.wip_3 }}</td> -->
-<!--        </tr> -->
-<!--        {% endfor %} -->
-<!--    </table> -->
-<!--    <table style="margin-top: 40px" border="1" align="center" width="auto" cellpadding="5" cellspacing="0" frame="vside"> -->
-<!--        <tr> -->
-<!--           <th width="200px">内网IP</th> -->
-<!--            <th width="200px">内网IP_1</th> -->
-<!--            <th width="200px">内网IP_2</th> -->
-<!--            <th width="200px">内网IP_3</th> -->
-<!--        </tr> -->
-<!--    </table> -->
-<!--    <table border="1" align="center" width="auto" cellpadding="5" cellspacing="0" frame="vside" > -->
-<!--        {% for i in result_servconf %} -->
-<!--        <tr> -->
-<!--            <td style="background-color: powderblue" width="200px">{{ i.lip }}</td> -->
-<!--            <td style="background-color: powderblue" width="200px">{{ i.lip_1 }}</td> -->
-<!--            <td style="background-color: powderblue" width="200px">{{ i.lip_2 }}</td> -->
-<!--            <td style="background-color: powderblue" width="200px">{{ i.lip_3 }}</td> -->
-<!--        </tr> -->
-<!--        {% endfor %} -->
-<!--    </table> -->
-
-    <table style="margin-top: 40px" border="1" align="center" width="auto" cellpadding="5" cellspacing="0" frame="vside">
-        <tr>
-            <th align="center" width="800px" colspan="4">维护记录</th>
-        </tr>
-        <tr>
-            {% for i in result_servconf %}
-            <th align="center" colspan="4" ><a href="http://127.0.0.1:8000/index/manage/{{ i.info_id }}/add_info/">添加记录</a></th>
+<div class="container">
+    <form style="margin-top: 30px">
+        <table class="table table-bordered table-condensed table-hover">
+            <thead>
+                <tr>
+                    <th style="background-color: #dbdbdb; width: 10%; vertical-align: middle">SN号</th>
+                    <th style="background-color: #dbdbdb; width: 40%; vertical-align: middle">CPU</th>
+                    <th style="background-color: #dbdbdb; width: 10%; vertical-align: middle">内存</th>
+                    <th style="background-color: #dbdbdb; width: auto; vertical-align: middle">硬盘</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in result_servconf %}
+                <tr>
+                    <td>{{ i.info_id }}</td>
+                    <td>{{ i.cpu }}</td>
+                    <td>{{ i.mem }}</td>
+                    <td>{{ i.disk }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                <!-- 下面这个for循环取值肯定不是最好的方法，需要改进-->
+                    {% for i in result_servconf %}
+                    <th colspan="4" style="background-color: #dbdbdb">维护记录<a style="margin-left: 100px" href="http://127.0.0.1:8000/index/servermanage/{{ i.info_id }}/add_info/">添加</a></th>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <th style="width: 5%; vertical-align: middle">序列</th>
+                    <th style="width: 16%; vertical-align: middle">时间</th>
+                    <th style="width: 10%; vertical-align: middle">记录人</th>
+                    <th style="width: auto; vertical-align: middle">维护明细</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for i in result_maintainrecords %}
+                <tr>
+                    <td>{{ i.id }}</td>
+                    <td>{{ i.time }}</td>
+                    <td>{{ i.editor }}</td>
+                    <td>{{ i.content }}</td>
+                </tr>
             {% endfor %}
-        </tr>
-        <tr>
-            <th width="auto">序列</th>
-            <th width="auto">时间</th>
-            <th width="auto">记录人</th>
-            <th width="600px">明细</th>
-        </tr>
-        {% for i in result_maintainrecords %}
-        <tr>
-            <td width="auto">{{ i.id }}</td>
-            <td width="auto">{{ i.time }}</td>
-            <td width="auto">{{ i.editor }}</td>
-            <td width="600px">{{ i.content }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-</form>
+            </tbody>
+        </table>
+    </form>
+</div>
 {% endblock %}
