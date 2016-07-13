@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'suit',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,6 +40,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Myproject.webapp',
 ]
+
+
+#from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
+
+#TEMPLATE_CONTEXT_PROCESSORS = TCP + ['django.core.context_processors.request',]
+
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
@@ -64,9 +71,12 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
-#                 'django.contrib.auth.views.login',
                 'django.contrib.messages.context_processors.messages',
-#                'Myproject.webapp.views.GetUserName',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
+                'django.core.context_processors.request',
             ],
         },
     },
@@ -127,7 +137,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'Myproject', 'webapp')
+STATIC_ROOT = os.path.join(BASE_DIR, 'webapp', 'static')
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'webapp')
 
 LOGIN_URL = '/'
 
